@@ -6,7 +6,7 @@ This service notifies you by email whenever you have a successful payment made t
 
 - Node.js
 - Express.js
-- Nodemailer
+- Nodemailer, Sendinblue
 
 ## Endpoints
 
@@ -21,10 +21,7 @@ NODE_ENV=
 PORT=
 CORS_ORIGIN=
 
-SMTP_HOST=
-SMTP_PORT=
-SMTP_USER=
-SMTP_PASSWORD=
+SENDINBLUE_API_KEY=
 EMAIL_FROM=
 EMAIL_TO=
 
@@ -48,6 +45,12 @@ npm install
 ```
 
 create a file called `.env` in the root of the project and fill in the environment variables
+
+Create a file in to root of the directory called `db.json`, and add the following content to it, than save:
+
+```json
+{ "transactions": [] }
+```
 
 Start Project
 
