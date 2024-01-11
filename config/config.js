@@ -7,10 +7,7 @@ const envSchema = Joi.object().keys({
   NODE_ENV: Joi.string().valid('production', 'development', 'test').required(),
   PORT: Joi.string().required().default('8000'),
   CORS_ORIGIN: Joi.string().required().default('*'),
-  SMTP_HOST: Joi.string().required(),
-  SMTP_PORT: Joi.string().required().default('587'),
-  SMTP_USER: Joi.string().required(),
-  SMTP_PASSWORD: Joi.string().required(),
+  SENDINBLUE_API_KEY: Joi.string().required(),
   EMAIL_FROM: Joi.string().email().required(),
   EMAIL_TO: Joi.string().email().required(),
   FLW_PUBLIC_KEY: Joi.string().required(),
@@ -37,14 +34,7 @@ const config = {
     cors_origin: validatedEnv.CORS_ORIGIN,
   },
   email: {
-    smtp: {
-      host: validatedEnv.SMTP_HOST,
-      port: validatedEnv.SMTP_PORT,
-      auth: {
-        username: validatedEnv.SMTP_USER,
-        password: validatedEnv.SMTP_PASSWORD,
-      },
-    },
+    sendinblue_api_key: validatedEnv.SENDINBLUE_API_KEY,
     from: validatedEnv.EMAIL_FROM,
     to: validatedEnv.EMAIL_TO,
   },

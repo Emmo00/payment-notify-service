@@ -7,7 +7,7 @@ export class Transactions {
   }
   save(transactionId = null) {
     if (!transactionId) {
-      fs.writeFileSync('../db.json', JSON.stringify(this.db));
+      fs.writeFileSync('./db.json', JSON.stringify(this.db));
       return;
     }
     this.db.transactions.push(transactionId);

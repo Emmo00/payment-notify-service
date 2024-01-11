@@ -1,5 +1,5 @@
-import config from '../config/config';
 import Flutterwave from 'flutterwave-node-v3';
+import config from '../config/config';
 import { Transactions } from '../utils/db';
 import { sendSuccessEmailNotificationEmail } from '../utils/sendEmail';
 
@@ -14,13 +14,14 @@ export async function paymentWebhookHandler(req, res) {
     return res.status(401).end();
   }
   const payload = req.body;
-  const response = await flw.Transaction.verify({ id: payload.id });
+  const response = await flw.Transaction.verify({ id:`${payload.data.id}` });
   if (
-    !new Transactions().exists(payload.id) &&
+    !(new Transactions()).exists(payload.data.id) &&
     response.data &&
     response.data.status === 'successful'
   ) {
-    sendSuccessEmailNotificationEmail(response.data);
-    new Transactions().save(payload.id);
+    sendSuccessEmailNotificationEmail(payload.data);
+    new Transactions().save(payload.data.id);
   }
+  res.status(200).end();
 }

@@ -1,39 +1,15 @@
 import nodemailer from 'nodemailer';
+import Transport from 'nodemailer-brevo-transport';
 import config from './config';
 
-let transporter;
-
-async function createTestEmailTransporter() {
-  const account = await nodemailer.createTestAccount();
-  transporter = nodemailer.createTransport({
-    host: account.smtp.host,
-    port: account.smtp.port,
-    secure: account.smtp.secure,
-    auth: {
-      user: account.user,
-      pass: account.pass,
-    },
-  });
-  return transporter;
-}
 
 function createEmailTransporter() {
-  transporter = nodemailer.createTransport({
-    host: config.email.smtp.host,
-    port: Number(config.email.smtp.port),
-    secure: false,
-    auth: {
-      user: config.email.smtp.auth.username,
-      pass: config.email.smtp.auth.password,
-    },
-  });
+  const transporter = nodemailer.createTransport(
+    new Transport({ apiKey: config.email.sendinblue_api_key })
+  );
   return transporter;
 }
 
-if (config.node_env === 'production') {
-  createEmailTransporter();
-} else {
-  createTestEmailTransporter();
-}
+const transporter = createEmailTransporter()
 
 export default transporter;

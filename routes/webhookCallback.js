@@ -1,5 +1,5 @@
-import { paymentWebhookHandler } from '../controller/webhookCallback';
 import { Router } from 'express';
+import { paymentWebhookHandler } from '../controller/webhookCallback';
 
 const webHookCallbackRouter = Router();
 

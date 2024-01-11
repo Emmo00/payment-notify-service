@@ -4,12 +4,19 @@
   "description": "This service notifies you by email whenever you have a successful payment made to your `FLUTTERWAVE` account.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "babel-node --presets @babel/preset-env ./index.js",
+    "dev": "nodemon --exec babel-node --presets @babel/preset-env"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.8.0",
+    "@babel/core": "^7.8.0",
+    "@babel/node": "^7.8.0",
+    "@babel/preset-env": "^7.8.2",
+    "@babel/register": "^7.8.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
@@ -17,6 +24,10 @@
     "flutterwave-node-v3": "^1.1.6",
     "helmet": "^7.1.0",
     "joi": "^17.11.0",
-    "nodemailer": "^6.9.8"
+    "nodemailer": "^6.9.8",
+    "nodemailer-brevo-transport": "^2.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
   }
 }

@@ -10,6 +10,10 @@
             padding: 0;
             font-family:  monospace;
         }
+        td {
+            padding: 10px;
+            font-size: 20px;
+        }
     </style>
 </head>
 <body>
@@ -17,15 +21,19 @@
     <table>
         <tr>
             <th>Amount</th>
-            <td>{<% transaction.currency %><% transaction.amount %></td>
+            <td><%= paymentInfo.currency %><%= paymentInfo.amount %></td>
         </tr>
         <tr>
             <th>From</th>
-            <td><% sender.name %> - <% sender.email %></td>
+            <td><%= paymentInfo.customer.name %> - <%= paymentInfo.customer.email %></td>
         </tr>
         <tr>
             <th>Date</th>
-            <td><% transaction.date %></td>
+            <td><%= new Date(paymentInfo.created_at).toLocaleString() %></td>
+        </tr>
+        <tr>
+            <th>Narration</th>
+            <td><%= paymentInfo.narration %></td>
         </tr>
     </table>
 </body>
