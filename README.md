@@ -11,7 +11,8 @@ This service notifies you by email whenever you have a successful payment made t
 ## Endpoints
 
 ```txt
-POST /api/webhook-callback - webhook
+GET /api/status - Status Ping
+POST /api/webhook-callback - Webhook Callback
 ```
 
 ## Environment Variables
